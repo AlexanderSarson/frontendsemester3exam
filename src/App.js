@@ -5,7 +5,7 @@ import LogIn from './components/Login';
 import NoMatch from './components/NoMatch';
 import Content3 from './components/Content3';
 import Scrape from './components/Scrape';
-import Jokes from './components/Jokes';
+import Courses from './components/Courses';
 import Home from './components/Home';
 import { AuthContext } from './contexts/AuthContext';
 import Header from './components/Header';
@@ -30,10 +30,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
 
-          <Route
-            path='jokes'
-            element={isLoggedIn ? <Jokes /> : <Navigate to='/login-out' />}
-          />
+          <Route path='courses' element={<Courses />} />
+
           <Route
             path='scrape'
             element={isAdmin ? <Scrape /> : <Navigate to='/login-out' />}

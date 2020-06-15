@@ -1,4 +1,4 @@
-const URL = 'https://sarson.codes/backendsemester3exam';
+const URL = 'http://localhost:8080/exam';
 
 function handleHttpErrors(res) {
   if (!res.ok) {

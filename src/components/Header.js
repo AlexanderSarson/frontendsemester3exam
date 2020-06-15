@@ -21,11 +21,11 @@ export default function Header({ loginMsg, toggleModal }) {
       <Menu.Item as={NavLink} to='parentNested' name='content3'>
         parentNested
       </Menu.Item>
-      {isLoggedIn && (
-        <Menu.Item as={NavLink} to='jokes' name='jokes'>
-          Jokes
-        </Menu.Item>
-      )}
+
+      <Menu.Item as={NavLink} to='courses' name='courses'>
+        Courses
+      </Menu.Item>
+
       {isAdmin && (
         <Menu.Item as={NavLink} to='scrape' name='scrape'>
           Scrape
