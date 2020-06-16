@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Menu, Icon } from 'semantic-ui-react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Menu, Icon, Button } from 'semantic-ui-react';
 import { AuthContext } from '../contexts/AuthContext';
 
 export default function Header({ loginMsg, toggleModal }) {
   const {
     auth: { isAdmin, isLoggedIn, username }
   } = useContext(AuthContext);
+  let navigate = useNavigate();
+  const handleUserPage = () => {
+    navigate(`/userPage/${username}`);
+  };
 
   return (
     <Menu color='blue' size='massive'>
@@ -15,26 +19,24 @@ export default function Header({ loginMsg, toggleModal }) {
         Home
       </Menu.Item>
 
-      <Menu.Item as={NavLink} to='content3' name='content3'>
-        Content 3
-      </Menu.Item>
-      <Menu.Item as={NavLink} to='parentNested' name='content3'>
-        parentNested
-      </Menu.Item>
-
       <Menu.Item as={NavLink} to='courses' name='courses'>
         Courses
       </Menu.Item>
 
       {isAdmin && (
-        <Menu.Item as={NavLink} to='scrape' name='scrape'>
-          Scrape
+        <Menu.Item as={NavLink} to='admin' name='admin'>
+          Admin
         </Menu.Item>
       )}
+
       <Menu.Menu position='right'>
         {isLoggedIn && (
-          <Menu.Item Header>
-            {isAdmin ? <Icon name='user plus' /> : <Icon name='user' />}
+          <Menu.Item header={true}>
+            {isAdmin ? (
+              <Icon name='user plus' />
+            ) : (
+              <Icon as={Button} onClick={handleUserPage} name='user' />
+            )}
             {username}
           </Menu.Item>
         )}

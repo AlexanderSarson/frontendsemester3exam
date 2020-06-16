@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import facade from '../api/apiFacade';
-import {
-  Segment,
-  Divider,
-  Grid,
-  Form,
-  Card,
-  Button,
-  Table,
-  Item,
-  Image,
-  Label
-} from 'semantic-ui-react';
+import { Divider, Item } from 'semantic-ui-react';
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
@@ -65,7 +54,12 @@ function PrintYogaClass({ yogaClass }) {
         <Item.Header>Yoga class {yogaClass.id}</Item.Header>
         <Item.Extra>Max participants: {yogaClass.maxParticipants}</Item.Extra>
         <Item.Extra>Price: {yogaClass.price} DKK</Item.Extra>
-        <Item.Extra>Start date: {yogaClass.startDate}</Item.Extra>
+        <Item.Extra>
+          Instructor:{' '}
+          {yogaClass.instructors
+            .map((instructor) => instructor.name)
+            .join(', ')}
+        </Item.Extra>
       </Item.Content>
     </Item>
   );

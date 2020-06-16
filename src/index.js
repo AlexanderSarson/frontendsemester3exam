@@ -4,7 +4,6 @@ import App from './App';
 import { HashRouter as Router } from 'react-router-dom';
 import './style.css';
 import { AuthProvider } from './contexts/AuthContext';
-import { StateProvider } from './contexts/StateContext';
 import 'semantic-ui-css/semantic.min.css';
 
 const AppWithRouter = () => {
@@ -15,10 +14,8 @@ const AppWithRouter = () => {
   );
 };
 ReactDOM.render(
-  <StateProvider>
-    <AuthProvider>
-      <AppWithRouter />
-    </AuthProvider>
-  </StateProvider>,
+  <AuthProvider>
+    <AppWithRouter />
+  </AuthProvider>,
   document.getElementById('root')
 );

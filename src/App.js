@@ -3,16 +3,15 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Modal from './components/Modal';
 import LogIn from './components/Login';
 import NoMatch from './components/NoMatch';
-import Content3 from './components/Content3';
-import Scrape from './components/Scrape';
+import Admin from './components/admin/Admin';
 import Courses from './components/Courses';
 import Home from './components/Home';
 import { AuthContext } from './contexts/AuthContext';
 import Header from './components/Header';
-import ParentNested from './components/nested/ParentNested';
-import ChildNested from './components/nested/ChildNested';
-import DisplayParams from './components/nested/ChildNested2';
-
+import CoursesAdmin from './components/admin/CoursesAdmin';
+import InstructorAdmin from './components/admin/InstructorAdmin';
+import YogaClassAdmin from './components/admin/YogaClassAdmin';
+import UserPage from './components/UserPage';
 function App() {
   const {
     auth: { isAdmin, isLoggedIn }
@@ -29,19 +28,18 @@ function App() {
       <div className='content'>
         <Routes>
           <Route path='/' element={<Home />} />
-
+          <Route path='userPage/:user' element={<UserPage />} />
           <Route path='courses' element={<Courses />} />
 
-          <Route
-            path='scrape'
-            element={isAdmin ? <Scrape /> : <Navigate to='/login-out' />}
-          />
-          <Route path='Content3' element={<Content3 />} />
-
-          <Route path='parentNested' element={<ParentNested />}>
-            <Route path='childNested' element={<ChildNested />} />
-            <Route path=':displayParam' element={<DisplayParams />} />
-          </Route>
+          {isAdmin ? (
+            <Route path='admin' element={<Admin />}>
+              <Route path='coursesAdmin' element={<CoursesAdmin />} />
+              <Route path='instructorAdmin' element={<InstructorAdmin />} />
+              <Route path='yogaClassAdmin' element={<YogaClassAdmin />} />
+            </Route>
+          ) : (
+            <Navigate to='/login-out' />
+          )}
 
           <Route
             path='/login-out'

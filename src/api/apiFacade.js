@@ -1,5 +1,6 @@
-const URL = 'http://localhost:8080/exam';
-
+const URL = 'https://sarson.codes/backendsemester3exam'; //Droplet
+//const URL = 'http://localhost:8080/exam';
+//const URL = 'http://52.143.7.6/backendsemester3exam-1' // Kubernetes
 function handleHttpErrors(res) {
   if (!res.ok) {
     return Promise.reject({ status: res.status, fullError: res.json() });
@@ -49,6 +50,9 @@ function apiFacade() {
     const options = makeOptions('GET', true); //True add's the token
     return fetch(URL + path, options).then(handleHttpErrors);
   };
+  const avancedFetchData = (path, options) => {
+    return fetch(URL + path, options).then(handleHttpErrors);
+  };
   const makeOptions = (method, addToken, body) => {
     var opts = {
       method: method,
@@ -73,7 +77,8 @@ function apiFacade() {
     login,
     logout,
     fetchData,
-    parseJwt
+    parseJwt,
+    avancedFetchData
   };
 }
 const facade = apiFacade();
