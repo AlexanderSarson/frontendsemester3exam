@@ -1,6 +1,6 @@
-const URL = 'https://sarson.codes/backendsemester3exam'; //Droplet
+//const URL = 'https://sarson.codes/backendsemester3exam'; //Droplet
 //const URL = 'http://localhost:8080/exam';
-//const URL = 'http://52.143.7.6/backendsemester3exam-1' // Kubernetes
+const URL = 'http://52.143.7.6/backendsemester3exam-1'; // Kubernetes
 function handleHttpErrors(res) {
   if (!res.ok) {
     return Promise.reject({ status: res.status, fullError: res.json() });
